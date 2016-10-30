@@ -17,18 +17,22 @@ class ValidatorProgramTests(unittest.TestCase):
     # write a test for the empty case
     def test_user_pressed_return_instead_of_entering_URLs(self):
         "Test for when user presses return or enter instead of entering a URL"
-        with patch('builtins.input', side_effect=['']):
-            with redirect_stdout(StringIO()) as fake_output:
-                main()
-        self.assertEqual(fake_output.getvalue(), "Wait a sec! I think you forgot to enter something.")
+        what_is_printed_to_user = self.run_program(user_entered_input="")
+        aspirational_printed_output = "Wait a sec! I think you forgot to enter something."
+        self.assertEqual(what_is_printed_to_user, aspirational_printed_output)
 
     def test_user_entered_a_well_formed_URL_that_returns_a_bad_status_code(self):
         "It does what we called it."
-        with patch('builtins.input', side_effect=['http://httpbin.org/status/404']):
+        what_is_printed_to_user = self.run_program(user_entered_input="http://httpbin.org/status/404")
+        aspirational_printed_output = "Error: 404: NOT FOUND"
+        self.assertEqual(what_is_printed_to_user, aspirational_printed_output)
+
+    def run_program(self, user_entered_input):
+        "Run program with user-provided input and return printed output "
+        with patch('builtins.input', side_effect=[user_entered_input]):
             with redirect_stdout(StringIO()) as fake_output:
                 main()
-        self.assertEqual(fake_output.getvalue(), "Error: 404: NOT FOUND")
-
+        return fake_output.getvalue()
 
 
 if __name__ == '__main__':
@@ -36,5 +40,3 @@ if __name__ == '__main__':
 
 
 # make the tests fail in an aspirational way :D
-# dedupe this code to remove redundancies
-# make a helper method in our testclass to start removing some of this duplication
