@@ -22,9 +22,19 @@ class ValidatorProgramTests(unittest.TestCase):
                 main()
         self.assertEqual(fake_output.getvalue(), "Wait a sec! I think you forgot to enter something.")
 
+    def test_user_entered_a_well_formed_URL_that_returns_a_bad_status_code(self):
+        "It does what we called it."
+        with patch('builtins.input', side_effect=['http://httpbin.org/status/404']):
+            with redirect_stdout(StringIO()) as fake_output:
+                main()
+        self.assertEqual(fake_output.getvalue(), "Error: 404: NOT FOUND")
+
+
 
 if __name__ == '__main__':
     unittest.main()
 
 
 # make the tests fail in an aspirational way :D
+# dedupe this code to remove redundancies
+# make a helper method in our testclass to start removing some of this duplication
