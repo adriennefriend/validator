@@ -24,37 +24,34 @@ def get_urls():
 
 
 def validate_urls(urls):
-    # adjust to do the work of looking for and storing the non-200 codes
+    """ Return information about each URL that cannot be fetched.
+    Return format is list of tuples [("http://some/invalid/url", status_code, message)]
+    where first element is the URL that caused the error,
+    status_code is either 1) a non-200 HTTP status code, or 2) None
+    and message is a string describing the problem """
     urls_returned = []
     for url in urls:
         try:
-            # get status code
-            # if code is not good
-                # results
-        # except as -:
-                # results
+            code = get_status_code(url)
+            if code != 200:
+                urls_returned.append((url, code, "Is a non-200 result code"))
+        except Exception as blarg:
+                urls_returned.append((url, None, str(blarg)))
     return urls_returned
 
 
 def get_status_code(url):
-    """return to an earlier version of this function that focuses on
+    """Return to an earlier version of this function that focuses on
     making a request to a given URL and simply returning the HTTP response code"""
-    # try:
-        response = requests.get(url)
-        # return "Requested {} and got {}".format(url, response.status_code)
-    # except Exception as blarg:    # add blarg to PyCharm dictionary
-        # print("Exception! The error is:", blarg)
+    response = requests.get(url)
+    return response.status_code
 
 
 def main():
     print_header()
     urls = get_urls()
-    for url in urls:
-        print()
-        print("Handling", url)
-        code = get_status_code(url)
-        print()
-        print("Return value is:", code)
+    error_info = validate_urls(urls)
+    print(error_info)
 
 
 if __name__ == '__main__':
