@@ -2,7 +2,7 @@
 
 ### What are we doing here?
 
-Accepts a list of URLs and returns a links that do not return a success status code, along with a brief description.
+Accepts a list of URLs and returns links that do not return a success status code, along with a brief description.
 
 ### Getting started
 
