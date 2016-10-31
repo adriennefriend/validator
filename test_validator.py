@@ -52,6 +52,13 @@ class ValidatorProgramTests(unittest.TestCase):
                 main()
         return fake_output.getvalue()
 
+# Realized I was probably going the wrong direction writing a functional test for the whole program.
+# Writing validator.py, I need to think less in terms of CLI user-input and more in terms of writing
+# something that can be easily read and executed by a machine, something more machine-friendly.
+# Then, those tests -- in ValidateURLTests will be easier to write as well.
+# Decided to switch more towards TDD, where I write the test first, based on things tried in the REPL, and
+# only after that, attempt to update the code to reflect this functionality.
+
 
 class ValidateUrlsTests(unittest.TestCase):
 
