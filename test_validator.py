@@ -63,9 +63,10 @@ class ValidateUrlsTests(unittest.TestCase):
         "Passed in a single successful url and since we don't care about those, doesn't give anything"
         self.assertEqual(validate_urls(["http://httpbin.org/status/200"]), [])
 
-    def test_passed_in_a_single_failing_url(self):
-        pass
-        self.assertEqual(validate_urls(["http://httpbin.org/status/FAIL"]), [tuple of actual URL and aspirational error])
+    def test_passed_in_a_single_properly_formatted_failing_url(self):
+        "Passed in a single failing url, successfully"
+        self.assertEqual(validate_urls(["http://httpbin.org/status/410"]),
+                         ("http://httpbin.org/status/410", "410: Gone"))
 
 # How will you know when to stop testing? Ask yo friends in QA
 
