@@ -23,6 +23,12 @@ def get_urls():
     return urls_entered
 
 
+def validate_urls(urls):
+    urls_returned = []
+    # To-do: magic happens, lord help
+    return urls_returned
+
+
 def get_status_code(url):
     try:
         response = requests.get(url)
