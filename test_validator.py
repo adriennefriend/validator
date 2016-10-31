@@ -13,6 +13,7 @@ from validator import main, validate_urls
 # an Acceptance or functional test that goes end to end
 # Doesn't test one individual function; but rather main()
 
+
 class ValidatorProgramTests(unittest.TestCase):
     # write a test for the empty case
     def test_user_entered_letter_a_instead_of_entering_URLs(self):
