@@ -24,8 +24,8 @@ def get_urls():
 
 
 def validate_urls(urls):
-    pass
     urls_returned = []
+    # for url in urls:
     # To-do: magic happens, lord help
     return urls_returned
 
