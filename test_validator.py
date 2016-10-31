@@ -6,13 +6,12 @@ from contextlib import redirect_stdout
 from io import StringIO
 from textwrap import dedent
 
-from validator import main
+from validator import main, validate_urls
 
 # Make a Test class; name it the name of the thing you're testing
 # We want to test the entire CLI
 # an Acceptance or functional test that goes end to end
 # Doesn't test one individual function; but rather main()
-
 
 class ValidatorProgramTests(unittest.TestCase):
     # write a test for the empty case
@@ -53,6 +52,22 @@ class ValidatorProgramTests(unittest.TestCase):
                 main()
         return fake_output.getvalue()
 
+
+class ValidateUrlsTests(unittest.TestCase):
+
+    def test_passed_in_empty_list(self):
+        "Passed in empty list and got empty list right back"
+        self.assertEqual(validate_urls([]), [])
+
+    def test_passed_in_a_single_success_url(self):
+        "Passed in a single successful url and since we don't care about those, doesn't give anything"
+        self.assertEqual(validate_urls(["http://httpbin.org/status/200"]), [])
+
+    def test_passed_in_a_single_failing_url(self):
+        pass
+        self.assertEqual(validate_urls(["http://httpbin.org/status/FAIL"]), [tuple of actual URL and aspirational error])
+
+# How will you know when to stop testing? Ask yo friends in QA
 
 if __name__ == '__main__':
     unittest.main()
