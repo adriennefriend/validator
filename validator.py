@@ -24,6 +24,7 @@ def get_urls():
 
 
 def validate_urls(urls):
+    pass
     urls_returned = []
     # To-do: magic happens, lord help
     return urls_returned
@@ -46,7 +47,6 @@ def main():
         code = get_status_code(url)
         print()
         print("Return value is:", code)
-        # print("return value of get_status_code is:", code)
 
 
 if __name__ == '__main__':
