@@ -33,7 +33,14 @@ class ValidatorProgramTests(unittest.TestCase):
     def test_user_entered_a_well_formed_URL_that_returns_a_bad_status_code(self):
         "It does what we called it."
         what_is_printed_to_user = self.run_program(user_entered_input="http://httpbin.org/status/404")
-        aspirational_printed_output = "Error: 404: NOT FOUND"
+        aspirational_printed_output = dedent("""\
+            C'mon let's check some urls
+
+            Hey, type some comma-separated urls! > http://httpbin.org/status/404
+
+            Handling http://httpbin.org/status/404
+
+            Return value is: Requested http://httpbin.org/status/404 and got 404\n""")
         self.assertEqual(what_is_printed_to_user, aspirational_printed_output)
 
     def run_program(self, user_entered_input):
