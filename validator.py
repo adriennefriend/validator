@@ -44,6 +44,7 @@ def get_status_code(url):
     """Return to an earlier version of this function that focuses on
     making a request to a given URL and simply returning the HTTP response code"""
     response = requests.get(url)
+    print(response.status_code)   # for debugging purposes
     return response.status_code
 
 
