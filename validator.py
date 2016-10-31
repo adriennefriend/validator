@@ -24,18 +24,26 @@ def get_urls():
 
 
 def validate_urls(urls):
+    # adjust to do the work of looking for and storing the non-200 codes
     urls_returned = []
-    # for url in urls:
-    # To-do: magic happens, lord help
+    for url in urls:
+        try:
+            # get status code
+            # if code is not good
+                # results
+        # except as -:
+                # results
     return urls_returned
 
 
 def get_status_code(url):
-    try:
+    """return to an earlier version of this function that focuses on
+    making a request to a given URL and simply returning the HTTP response code"""
+    # try:
         response = requests.get(url)
-        return "Requested {} and got {}".format(url, response.status_code)
-    except Exception as blarg:    # add blarg to PyCharm dictionary
-        print("Exception! The error is:", blarg)
+        # return "Requested {} and got {}".format(url, response.status_code)
+    # except Exception as blarg:    # add blarg to PyCharm dictionary
+        # print("Exception! The error is:", blarg)
 
 
 def main():
